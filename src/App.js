@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import ParsaState from "./context/ParsaState"
+import UiState from "./context/UiState"
+import Header from "./components/Header"
+import InputControl from "./components/InputControl"
+import Expression from "./components/Expression"
+import ConsoleLog from "./components/ConsoleLog"
+
+import './App.css'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <ParsaState>
+      <UiState>
+        <Header />
+        <div className="container">
+          <InputControl />
+          <Expression />
+          <ConsoleLog />
+        </div>
+      </UiState>
+    </ParsaState>
+  )
 }
 
-export default App;
+export default App
