@@ -20,7 +20,7 @@ const ParsaState = props => {
   const [state, dispatch] = useReducer(ParsaReducer, initialState)
 
   const parseExpression = async (expression) => {
-    const res = await parsa.parse(expression)
+    const res = parsa.parse(expression)
 
     dispatch({
       type: PARSE,
@@ -31,7 +31,7 @@ const ParsaState = props => {
   }
 
   const evaluateAll = async () => {
-    let res = await parsa.evaluateAll(state.items)
+    let res = parsa.evaluateAll(state.items)
 
     dispatch({
       type: EVALUATE_ALL,
@@ -42,7 +42,7 @@ const ParsaState = props => {
   }
 
   const evaluateNext = async () => {
-    let res = await parsa.evaluateNext(state.items)
+    let res = parsa.evaluateNext(state.items)
 
     dispatch({
       type: EVALUATE_NEXT,
