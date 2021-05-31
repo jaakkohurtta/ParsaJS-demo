@@ -10,33 +10,39 @@ function InputControl() {
 
   const [expression, setExpression] = useState("")
 
-  const onChange = (e) => setExpression(e.target.value)
+  
+  const onMouseEnter = () => uiContext.setBlockHighlightIndex(parsaContext.nextBlockId - 1)
+  const onMouseLeave = () => uiContext.clearBlockHighlightIndex()
+  const handleChange = (e) => setExpression(e.target.value)
 
-  const onClick = (e) => {
-    switch(e.target.id) {
-      case "parseBtn":
-        if(expression.length !== 0) {
-          parsaContext.resetState()
-          parsaContext.parseExpression(expression)
-        }
-        break
-      case "evaluateAllBtn":
-        if(parsaContext.items.length !== 0) {
-          parsaContext.evaluateAll()
-        }
-        break
-      case "evaluateNextBtn":
-        if(parsaContext.items.length !== 0) {
-          parsaContext.evaluateNext()
-        }
-        break
-      default:
-        break
+  const handleClick = (func) => {
+    const handler = () => {
+      func()
+    }
+    return handler
+  }
+
+  // Parse expression
+  const parseExpression = () => {
+    if(expression.length !== 0) {
+      parsaContext.resetState()
+      parsaContext.parseExpression(expression)
     }
   }
 
-  const onMouseEnter = () => uiContext.setBlockHighlightIndex(parsaContext.nextBlockId - 1)
-  const onMouseLeave = () => uiContext.clearBlockHighlightIndex()
+  // Evaluate all
+  const evaluateAll = () => {
+    if(parsaContext.items.length !== 0) {
+      parsaContext.evaluateAll()
+    }    
+  }
+
+  // Evaluate next
+  const evaluateNext = () => {
+    if(parsaContext.items.length !== 0) {
+      parsaContext.evaluateNext()
+    }    
+  }
 
   return (
     <Fragment>
@@ -44,26 +50,26 @@ function InputControl() {
         id="expressionInput" 
         classList="mb-4" 
         placeholder="Type in an expression.." 
-        value={expression} onChange={onChange} 
+        value={expression} onChange={handleChange} 
         />
       <div className="row">
         <Button 
           id="parseBtn" 
           value="parse()" 
           classList="btn" 
-          onClick={onClick} 
+          onClick={handleClick(parseExpression)} 
           />
         <Button 
           id="evaluateAllBtn" 
           value="evaluateAll()" 
           classList="btn ml-2 mr-2" 
-          onClick={onClick} 
+          onClick={handleClick(evaluateAll)} 
           />
         <Button 
           id="evaluateNextBtn" 
           value="evaluateNext()" 
           classList="btn" 
-          onClick={onClick} 
+          onClick={handleClick(evaluateNext)} 
           onMouseEnter={onMouseEnter} 
           onMouseLeave={onMouseLeave} 
           />
