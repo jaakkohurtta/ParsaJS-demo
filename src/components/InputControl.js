@@ -9,18 +9,10 @@ function InputControl() {
   const uiContext = useContext(UiContext)
 
   const [expression, setExpression] = useState("")
-
   
   const onMouseEnter = () => uiContext.setBlockHighlightIndex(parsaContext.nextBlockId - 1)
   const onMouseLeave = () => uiContext.clearBlockHighlightIndex()
   const handleChange = (e) => setExpression(e.target.value)
-
-  const handleClick = (func) => {
-    const handler = () => {
-      func()
-    }
-    return handler
-  }
 
   // Parse expression
   const parseExpression = () => {
@@ -46,7 +38,7 @@ function InputControl() {
 
   return (
     <Fragment>
-      <ExpressionInput 
+      <ExpressionInput
         id="expressionInput" 
         classList="mb-4" 
         placeholder="Type in an expression.." 
@@ -57,19 +49,19 @@ function InputControl() {
           id="parseBtn" 
           value="parse()" 
           classList="btn" 
-          onClick={handleClick(parseExpression)} 
+          onClick={parseExpression} 
           />
         <Button 
           id="evaluateAllBtn" 
           value="evaluateAll()" 
           classList="btn ml-2 mr-2" 
-          onClick={handleClick(evaluateAll)} 
+          onClick={evaluateAll} 
           />
         <Button 
           id="evaluateNextBtn" 
           value="evaluateNext()" 
           classList="btn" 
-          onClick={handleClick(evaluateNext)} 
+          onClick={evaluateNext} 
           onMouseEnter={onMouseEnter} 
           onMouseLeave={onMouseLeave} 
           />
