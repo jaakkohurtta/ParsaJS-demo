@@ -14,7 +14,7 @@ const ParsaState = props => {
     blocks: [],
     nextBlockId: null,
     complete: false,
-    logType: null
+    logType: null,
   }
 
   const [state, dispatch] = useReducer(ParsaReducer, initialState)

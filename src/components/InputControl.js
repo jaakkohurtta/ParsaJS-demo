@@ -51,12 +51,15 @@ function InputControl() {
           classList="btn" 
           onClick={parseExpression} 
           />
+        {parsaContext.nextBlockId && 
         <Button 
           id="evaluateAllBtn" 
           value="evaluateAll()" 
           classList="btn ml-2 mr-2" 
           onClick={evaluateAll} 
           />
+        }
+        {parsaContext.nextBlockId &&
         <Button 
           id="evaluateNextBtn" 
           value="evaluateNext()" 
@@ -65,6 +68,7 @@ function InputControl() {
           onMouseEnter={onMouseEnter} 
           onMouseLeave={onMouseLeave} 
           />
+        }
       </div>
     </Fragment>
   )
