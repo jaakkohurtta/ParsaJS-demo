@@ -62,7 +62,7 @@ const ParsaState = props => {
   }
 
   const getNextBlockId = () => {
-    return parsa._getNextBlock()
+    return parsa.getNextBlock()
   }
 
   return <ParsaContext.Provider
